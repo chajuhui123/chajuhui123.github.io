@@ -1,0 +1,293 @@
+---
+layout: post
+title:  "[Kotlin] 기초부터 탄탄하게, 기본 문법 #1"
+date:   2021-01-13 11:18
+categories: Android Kotlin
+---
+Kotlin 공부를 시작했어요.<br>
+기본 문법부터 시작해서 클론 코딩까지 혼자 공부해볼 예정이랍니다.
+현장실습 쉬는시간이나 퇴근하고 짬내서 공부 중인데, 코틀린도 파이썬만큼이나 간단한 언어인 것 같더라구요. 
+기본 문법 배우는 건 항상 재밌군... 전 항상 눈에 보이는 게 재밌어요 :D  여러분도 그런가요?!
+
+<br>
+
+----
+
+<br>
+
+목차는 다음과 같아요.
+0.  string template
+1.  function
+2.  value VS variance
+3.  조건식 if when
+4.  array VS list
+5.  반복문 for while (+ Exression VS Statement)
+6.  null type
+7.  class
+8.  스스로에게 칭찬의 시간 갖기 😍
+
+
+<br>
+
+----
+
+<br>
+
+- String template
+
+```javascript
+fun main(){
+    // 0. String 템플릿
+    // ${} 표시를 이용해 변수를 활용
+    val name = "Joy"
+    println("my name is ${name + name} I'm 23")
+    println("Is this true? ${1==0}")
+    println("this is 2\$.")
+}
+```
+- Function
+- Unit에 대해 알게 되었어요! Kotlin function의 특징은 변수이름이 먼저 오고, 변수 타입이 뒤에 오는 것이에요.
+
+```javascript
+// 1. 함수
+// 코틀린은 항상 function의 줄임말인 fun을 사용한다.
+
+// 회색으로 뜨는 부분은 생략해도 괜찮은 것!
+// return이 없을 땐 Unit이라고 써줘도 되고 생략도 가능
+
+fun helloWorld() : Unit{
+    println("hello world!")
+}
+
+// 두 수를 더해주는 함수
+// 특징 : 변수이름 먼저 변수 타입은 뒤에
+fun add(a : Int, b : Int) : Int {
+    return a+b
+}
+```
+
+- Value와 Variance
+- 변할 수 있는지 없는지가 둘의 차이에요.
+
+```javascript
+// 2. val VS var
+// val = value (상수 : 바뀌지 않는 것)
+// var = variance (변수)
+
+fun hi(){
+    val a : Int = 10
+    var b : Int = 9
+    var e : String // 선언할땐 어떤 변수인지 명시해야한다.
+
+    b = 100
+
+    val c = 100 // Int는 생략가능하나(코틀린이 알아서 인식한다.) var인지 val인지는 선언해야 한다.
+    var name = "joy" // string도 마찬가지
+}
+```
+- 조건식 if, when
+- expression과 statement에 대한 개념이 java와 달라요.
+
+```javascript
+// 4. 조건식 (if와 when)
+
+fun maxBy(a : Int, b: Int) : Int{
+    if (a>b){
+        return a
+    } else {
+        return b
+    }
+}
+
+// + Expression VS Statement
+// Expression : 무언가의 값을 만들면 expression
+// Statement : 실행을 하도록 하는 것은 statement
+// Java : if문은 항상 statement / Kotlin : if문 when문 상황에 따라 expression + staement 로 사용 가능
+
+fun maxBy2(a:Int, b:Int) : Int = if(a>b) a else b // a혹은 b라는 값을 만든다. (=expression)
+
+
+fun checkNum (score : Int){ // kotlin에서 모든 함수는 expression ( return값이 없어도, Unit을 return하기 때문)
+    // 다만 void는 statement
+    when(score) { // 여기서의 when은 값을 만드는 것은 아니고 실행을 위한 문장 (=statement)
+        0 -> println("this is 0")
+        1 -> println("this is 1")
+        2,3 -> println("this is 2 or 3")
+        else -> println("I don't know") // 없어도 됨
+    }
+
+    var b = when(score){ // 여기서 when은 값을 만들기 때문에 (=expression)
+        1 -> 1
+        2 -> 2
+        else -> 3 // 여기서 else는 빠지면 안됨
+    }
+    println("b : ${b}")
+
+    when(score){
+        in 90..100 -> println("you are genius")
+        in 10..80 -> println("not bad")
+        else -> println("Okay") // 없어도 됨
+    }
+}
+```
+
+- Array와 List
+- Array는 크기가 정해지고, List는 Inmutable List와 Mutable List로 나눌 수 있어요.
+
+```javascript
+// 5. Array and List
+// Array : 메모리가 할당되어져 짐 : 크기가 정해짐
+// List  : 1. (Inmutable) List 읽기만 가능 2. MutableList 읽기쓰기 모두 가능
+
+fun array(){
+    val array = arrayOf(1,2,3)
+    val list = listOf(1,2,3)
+
+    // 여러가지 형태를 담을 수 있다.
+    val array2 = arrayOf(1, "Jinwoo", 3.4f)
+    val list2 = listOf(1, "Jinoo", 11L)
+
+    array[0] = 3
+    var result = list.get(0)
+
+    // *** val을 써도 될까? : 참조값이 변하지 않기 때문에 val로 선언 가능하다. 주소값이 변하지 않는다.
+    val arrayList = arrayListOf<Int>()
+    arrayList.add(10)
+    arrayList.add(20)
+}
+```
+- 반복문 for, while
+
+```javascript
+// 6. For / While
+
+fun forAndWhile(){
+    // for
+    val students = arrayListOf("joy", "juhee", "Rachel", "Jarvis")
+    for (name in students){
+        println("${name}")
+    }
+    var sum : Int = 0
+    for (i in 1..10 step 2){
+    // 10 dowTo 1 : 10부터 1까지 차례로 내려감
+    //1 until 100 : 1부터 99까지! 1..100은 100까지!
+        sum += i
+    }
+    println(sum)
+
+    for ((index, name)in students.withIndex()){
+        println("${index + 1}번째 학생은 ${name}이에요.")
+    }
+    // while
+    var index = 0
+    while(index < 10){
+        println("current index : ${index}")
+        index++
+    }
+
+}
+```
+
+- Nullable과 NonNull
+- null type에 대한 정확한 이해가 필요하니 집중하도록 해요.
+
+```javascript
+// 7. Nullable / NonNull
+// Java와 Kotlin의 차이점!
+// ?: 엘비스 연산자라고 불러요. 90로 봤을 때 엘비스 프레슬리같아서..
+
+fun nullcheck(){
+    // NPE : Null Point Exception.
+    // Java에서는 Run time에서 잡힘. Kotlin에서는 Compile 시점에서 잡히도록 함
+
+    var name : String = "Joy" // Nonnull type
+    var nullName : String? = null // ?를 넣으면 nullable type이 된다
+
+    var nameInUpperCase = name.toUpperCase()
+
+    var nullNameInUpperCase = nullName?.toUpperCase()
+    //null이 아니면 toUpperCase가 되고, null이면 null이 된다
+
+    val lastName : String? = null
+    val fullName = name + " " + (lastName?: "No lastName") //lastName이 null이면 뒤에 있는 "No lastName"을 사용
+    println(fullName)
+}
+
+fun ignoreNulls(str : String?){
+    val mNotNull : String = str!!
+    // 이 자리에 null이 들어올리가 절대 없을 때 사용 가능
+    // 하지만 확실히 하지 않으면 사용하는 것 지양하자.
+    val upper = mNotNull.toUpperCase()
+
+    val email : String? = null
+    email?.let{ // null이 아니면 email을 내부로 보내줌
+        println("my mail is ${email}") // 만약 null이면 내부로 오지않기때문에 이 문장은 사용되지 않음.
+    }
+}
+```
+- Class에 대한 이해
+
+```javascript
+// 8. Class
+fun main(){
+//    val human = Human("juhee")
+//    val stranger = Human()
+
+//    human.eatingCake()
+//    println("this human's name is ${human.name}")
+//    println("this human's name is ${stranger.name}")
+//    val mother = Human("hs", 50)
+
+    val korean = Korean()
+    korean.singAsong()
+
+}
+
+open class Human constructor(val name : String = "Annoymous"){ //기본생성자
+    // property로 있는 것과 같다.
+    // 디폴트값도 가능
+
+    // 부생성자
+    constructor(name : String, age : Int) : this(name){
+        //부생성자는 주생성자의 위임을 받아야한다. this 예약어 사용
+        // 주생성자가 없으면 위임받을 필요가 없다
+        println("my name is ${name}, ${age} years old")
+    }
+
+    init{
+        println("New human has been born!!")
+        // 주생성자의 일부이기 때문에 시작될 때 같이 생성됨.
+        //먼저 실행됨
+    }
+    fun eatingCake(){
+        println("This is so YUMMMMMMY")
+    }
+    open fun singAsong(){
+        println("Lalala")
+    }
+}
+
+
+// class 상속 
+// 상속받아 올 class는 open 예약어를 사용해야 한다.
+// 상속은 1개만 가능
+class Korean : Human(){ // 상속 받은 method를 Koran class에서 다르게 사용하고 싶을 때 override를 한다.
+    override fun singAsong(){
+        //singAsong in Human is final! 따라서 override가 안된다.
+        //그렇다면 singAsong in Human도 open 예약어를 작성해주자.
+        super.singAsong() // singAsong in Human 사용.
+        println("라라랄")
+        println("my name is ${name}") // annoymous
+    }
+
+}
+```
+
+<br>
+
+----
+
+<br>
+
+수고했어 Joy!! :D 꾸준함과 진심으로 차곡차곡 쌓아가자.
+
