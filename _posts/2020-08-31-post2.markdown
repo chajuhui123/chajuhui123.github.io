@@ -1,0 +1,119 @@
+---
+layout: post
+title:  "[Git&Github] git clone과 git remote -v"
+date:   2020-08-31 15:00
+categories: Git Github
+---
+
+프로젝트를 받아오고 잘 받아와졌는지 확인해봅시다!
+
+----
+
+ 
+![image](https://blog.kakaocdn.net/dn/b1orXq/btqHnlCakM2/ZeA1fNgjj4KjnWwf2FqQG0/img.png)
+
+먼저 깃을 활용할 (협업할)
+
+리포지터리(Repository)​에 들어가거나
+
+새로 생성해준다
+
+ 
+
+ 
+![image](https://blog.kakaocdn.net/dn/blhBxA/btqHnhtgaLV/Zr1xIkiEG6DVZGkHjjwXN1/img.png)
+
+레퍼지토리가 만들어졌다 :D
+
+![image](https://blog.kakaocdn.net/dn/beqtGp/btqHtFzFe3r/mQEKrucJmA1KDNPBCDYhdK/img.png)
+링크 바로 옆 클립버튼을 누르면 자동으로 복사된다 ! 
+
+
+이것이 우리가 협업할 프로젝트라고 해보자.
+
+ 
+
+먼저 이 프로젝트를 내 컴퓨터에 가져와야한다
+
+ 
+
+오른쪽 상단 초록버튼 Code를 누르고 링크를 복붙한다.
+
+
+
+
+이제 Vscode를 킨다
+
+![image](https://blog.kakaocdn.net/dn/lGwvq/btqHq1pEQbg/1k5FS4GGePKrxpUPprS2KK/img.png)
+
+<code>cd ..</code> 
+<code>cd practice</code>  
+
+
+ 
+
+먼저 프로젝트를 받아올 경로를 지정해야한다
+
+우리는 cd 를 통해 현재 위치를 변경할 수 있다!
+
+ 
+
+난 desktop/paractice 안에 프로젝트를 만들 것이다.
+
+경로는 터미널창에 적혀있는 노란색 부분이다! 현재 내가 밟고 있는 경로는 desktop/practice ! 
+
+ 
+
+ 
+
+![image](https://blog.kakaocdn.net/dn/pZCVh/btqHhPxeYYk/es9q9rfoZcWJdBNZqikaUK/img.png)
+ 
+
+<code>git clone 협업프로젝트에서복사한링크</code>
+
+ 
+
+를 작성하면 practice 안에
+
+내가 만든 레포지토리가 만들어진 것을 볼 수 있다
+
+ 
+
+그럼 다시 cd를 이용하여 레포지토리 안에 들어가서
+
+<code>cd gitPractice(나의프로젝트이름) </code>
+
+ 
+
+<code>git remote -v</code>
+
+​
+
+를 하여 현재 어느 주소에 우리가 있는지 확인해보자
+
+![image](https://blog.kakaocdn.net/dn/bSu66g/btqHq2IP2UQ/AfSzfbpAdg2Kaop9y1kLC0/img.png)
+
+ 
+
+
+​
+
+아주 잘 연결되었다.
+
+ 
+
+이제부터 실질적으로 깃을 통해 협업을 해볼 것이다.
+
+----
+
+다음 게시물에서 우리는
+
+팀원들이 수정한 파일을 내 컴퓨터에 받아오고(pull)
+
+나의 브런치에 연결하고(checkout -b)
+
+수정 사항을 담고(add)
+
+수정 메시지를 남기고 (commit -m)
+
+마지막으로 나의 브런치에 저장할 것이다(push)

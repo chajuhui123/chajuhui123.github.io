@@ -1,0 +1,99 @@
+---
+layout: post
+title:  "[Git&Github] Git을 사용하는 이유 + VsCode 및 Git 설치하기"
+date:   2020-08-31 14:50
+categories: Git Github
+---
+
+깃은 프로젝트를 진행하는데 있어 유용한 협업 도구이다. 하나의 프로젝트에 여러 개발자가 있을 때,
+개발자 각각 '자신만의 브랜치'에서 코드를 작성하게 된다.
+이는 충돌을 막아주고,
+각자 수정한 부분을 병합(머지)할 수 있다.
+
+<br>
+계속 파일을 주고 받고 할 순 없잖아요!?<br>
+그리고 한 사람이 수정을 다 마칠때까지 기다려 줄수도 없죠?<br>
+각자  맡은 부분 수정하고 나중에 합칩시다!!<br><br>
+
+
+할때 깃을 사용한다.
+이번 포스팅에서 우리가 할 것은
+GitHub을 활용하기 위한 백그라운드를 세팅해놓는 것이다.
+
+-----
+
+**목차**
+
+1. [Download VS Code](#1-Download-VS-Code)
+
+2. [Download Git](#2-Download-Git)
+
+----
+
+# 1. Download VS Code
+
+ 
+
+
+
+[https://code.visualstudio.com/](https://code.visualstudio.com/){: target="_blank"}
+<br>위 링크로 이동
+
+ 
+ ![image](https://blog.kakaocdn.net/dn/NFWXn/btqG4bOu99X/0OuEtgXO107vYcekpBSKRk/img.png)
+ 
+
+
+ 
+
+위 버튼을 누른 후 설치 진행 ...
+
+
+
+설치 완료 후
+
+한국어 버전을 원한다면?
+
+![image](https://blog.kakaocdn.net/dn/s2qcx/btqG5LIN7k2/riFYxXAN31a4IMrxwna7MK/img.png) 
+
+ 
+
+ 
+
+
+ 
+
+1. 맨 왼쪽에 확장버튼 클릭 ( 혹은 Crtl + Shift + X )
+
+2. Korean Language Pack for Visual Studio Code 검색
+
+3. 설치
+
+4. 설치 완료 후 VsCode 재실행
+
+​
+
+# 2. Download Git
+
+ 
+
+[http://www.git-scm.com/](http://www.git-scm.com/){: target="_blank"}
+<br>위 링크로 이동
+
+![image](https://blog.kakaocdn.net/dn/b3o4fB/btqG6dL3X25/KI9xG7ualkA4rHh16Xn3R0/img.png) 
+
+위 버튼을 누르고 설치 진행
+
+ <br>
+⭐중요⭐
+
+Next 버튼을 누르다
+
+Adjusting your PATH environment 가 나오면 
+
+Use Git From the Windows Command Prompt 로 설정
+
+<br>
+설치 완료 :)
+
+Git&GitHub를 활용할 준비가 끝났다!
