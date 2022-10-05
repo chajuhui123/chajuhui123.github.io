@@ -1,22 +1,22 @@
 var plugins = [{
       name: 'gatsby-plugin-image',
-      plugin: require('/Users/chajuhui/Desktop/joy.dev/node_modules/gatsby-plugin-image/gatsby-ssr.js'),
+      plugin: require('/Users/chajuhui/Desktop/Develop/joy.dev/node_modules/gatsby-plugin-image/gatsby-ssr.js'),
       options: {"plugins":[]},
     },{
       name: 'gatsby-plugin-feed',
-      plugin: require('/Users/chajuhui/Desktop/joy.dev/node_modules/gatsby-plugin-feed/gatsby-ssr.js'),
+      plugin: require('/Users/chajuhui/Desktop/Develop/joy.dev/node_modules/gatsby-plugin-feed/gatsby-ssr.js'),
       options: {"plugins":[],"query":"\n          {\n            site {\n              siteMetadata {\n                title\n                description\n                siteUrl\n                site_url: siteUrl\n              }\n            }\n          }\n        ","feeds":[{"query":"\n              {\n                allMarkdownRemark(\n                  sort: { order: DESC, fields: [frontmatter___date] },\n                ) {\n                  nodes {\n                    excerpt\n                    html\n                    fields {\n                      slug\n                    }\n                    frontmatter {\n                      title\n                      date\n                    }\n                  }\n                }\n              }\n            ","output":"/rss.xml","title":"Gatsby Starter Blog RSS Feed"}]},
     },{
       name: 'gatsby-plugin-manifest',
-      plugin: require('/Users/chajuhui/Desktop/joy.dev/node_modules/gatsby-plugin-manifest/gatsby-ssr.js'),
+      plugin: require('/Users/chajuhui/Desktop/Develop/joy.dev/node_modules/gatsby-plugin-manifest/gatsby-ssr.js'),
       options: {"plugins":[],"name":"JOYDEV LOG","short_name":"Joy","start_url":"/","background_color":"#ffffff","display":"minimal-ui","icon":"src/images/gatsby-icon.png","legacy":true,"theme_color_in_head":true,"cache_busting_mode":"query","crossOrigin":"anonymous","include_favicon":true,"cacheDigest":"4a9773549091c227cd2eb82ccd9c5e3a"},
     },{
       name: 'default-site-plugin',
-      plugin: require('/Users/chajuhui/Desktop/joy.dev/gatsby-ssr.js'),
+      plugin: require('/Users/chajuhui/Desktop/Develop/joy.dev/gatsby-ssr.js'),
       options: {"plugins":[]},
     },{
       name: 'partytown',
-      plugin: require('/Users/chajuhui/Desktop/joy.dev/node_modules/gatsby/dist/internal-plugins/partytown/gatsby-ssr.js'),
+      plugin: require('/Users/chajuhui/Desktop/Develop/joy.dev/node_modules/gatsby/dist/internal-plugins/partytown/gatsby-ssr.js'),
       options: {"plugins":[]},
     }]
 /* global plugins */
