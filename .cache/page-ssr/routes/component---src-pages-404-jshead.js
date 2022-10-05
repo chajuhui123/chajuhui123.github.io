@@ -25,8 +25,8 @@ const Layout = ({
   children
 }) => {
   const rootPath = `${""}/`;
-  const isRootPath = location.pathname === rootPath;
-  let header; // if (isRootPath) {
+  const isRootPath = location.pathname === rootPath; // let header;
+  // if (isRootPath) {
   //   header = (
   //     <h1 className="main-heading">
   //       <Link to="/"></Link>

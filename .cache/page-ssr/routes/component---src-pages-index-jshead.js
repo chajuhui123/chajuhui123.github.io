@@ -840,7 +840,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var _public_page_data_sq_d_3257411868_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../public/page-data/sq/d/3257411868.json */ "./public/page-data/sq/d/3257411868.json");
+/* harmony import */ var _public_page_data_sq_d_3274528899_json__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../public/page-data/sq/d/3274528899.json */ "./public/page-data/sq/d/3274528899.json");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "react");
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var gatsby_plugin_image__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! gatsby-plugin-image */ "./node_modules/gatsby-plugin-image/dist/gatsby-image.module.js");
@@ -856,12 +856,27 @@ __webpack_require__.r(__webpack_exports__);
 
 
 const Bio = () => {
-  var _data$site$siteMetada, _data$site$siteMetada2;
+  var _data$site$siteMetada;
 
-  const data = _public_page_data_sq_d_3257411868_json__WEBPACK_IMPORTED_MODULE_0__.data; // Set these values by editing "siteMetadata" in gatsby-config.js
+  const data = _public_page_data_sq_d_3274528899_json__WEBPACK_IMPORTED_MODULE_0__.data; // const data = useStaticQuery(graphql`
+  //   query BioQuery {
+  //     site {
+  //       siteMetadata {
+  //         author {
+  //           name
+  //           summary
+  //         }
+  //         social {
+  //           twitter
+  //         }
+  //       }
+  //     }
+  //   }
+  // `);
+  // Set these values by editing "siteMetadata" in gatsby-config.js
 
-  const author = (_data$site$siteMetada = data.site.siteMetadata) === null || _data$site$siteMetada === void 0 ? void 0 : _data$site$siteMetada.author;
-  const social = (_data$site$siteMetada2 = data.site.siteMetadata) === null || _data$site$siteMetada2 === void 0 ? void 0 : _data$site$siteMetada2.social;
+  const author = (_data$site$siteMetada = data.site.siteMetadata) === null || _data$site$siteMetada === void 0 ? void 0 : _data$site$siteMetada.author; // const social = data.site.siteMetadata?.social;
+
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
     className: "bio"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_1__.createElement("div", {
@@ -907,8 +922,8 @@ const Layout = ({
   children
 }) => {
   const rootPath = `${""}/`;
-  const isRootPath = location.pathname === rootPath;
-  let header; // if (isRootPath) {
+  const isRootPath = location.pathname === rootPath; // let header;
+  // if (isRootPath) {
   //   header = (
   //     <h1 className="main-heading">
   //       <Link to="/"></Link>
@@ -1121,13 +1136,13 @@ module.exports = JSON.parse('{"data":{"site":{"siteMetadata":{"title":"","descri
 
 /***/ }),
 
-/***/ "./public/page-data/sq/d/3257411868.json":
+/***/ "./public/page-data/sq/d/3274528899.json":
 /*!***********************************************!*\
-  !*** ./public/page-data/sq/d/3257411868.json ***!
+  !*** ./public/page-data/sq/d/3274528899.json ***!
   \***********************************************/
 /***/ ((module) => {
 
-module.exports = JSON.parse('{"data":{"site":{"siteMetadata":{"author":{"name":"주희(Joy)","summary":"가치를 고민하는 과정을 함께해요"},"social":null}}}}');
+module.exports = JSON.parse('{"data":{"site":{"siteMetadata":{"author":{"name":"주희(Joy)","summary":"가치를 고민하는 과정을 함께해요"}}}}}');
 
 /***/ })
 
