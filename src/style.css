@@ -1,5 +1,27 @@
 /* CSS Custom Properties Definitions */
 
+@font-face {
+  font-family: "DosKor";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2206-02@1.0/DosKor.woff2")
+    format("woff2");
+  font-weight: normal;
+  font-style: normal;
+}
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+@font-face {
+  font-family: "LeferiPoint-BlackA";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiPoint-BlackA.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
   --maxWidth-none: "none";
   --maxWidth-xs: 20rem;
@@ -27,11 +49,11 @@
   --spacing-20: 5rem;
   --spacing-24: 6rem;
   --spacing-32: 8rem;
-  --fontFamily-sans: Montserrat, system-ui, -apple-system, BlinkMacSystemFont,
-    "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif,
-    "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
-  --fontFamily-serif: "Merriweather", "Georgia", Cambria, "Times New Roman",
-    Times, serif;
+  --fontFamily-sans: LeferiPoint-BlackA, Montserrat, system-ui, -apple-system,
+    BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans",
+    sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+    "Noto Color Emoji";
+  --fontFamily-serif: Pretendard-Regular, system-ui, -apple-system;
   --font-body: var(--fontFamily-serif);
   --font-heading: var(--fontFamily-sans);
   --fontWeight-normal: 400;
@@ -54,12 +76,17 @@
   --fontSize-5: 2.074rem;
   --fontSize-6: 2.488rem;
   --fontSize-7: 2.986rem;
-  --color-primary: #005b99;
+  --color-primary: #edc5c5;
   --color-text: #2e353f;
-  --color-text-light: #4f5969;
+  --color-text-light: #7d7d7d;
   --color-heading: #1a202c;
   --color-heading-black: black;
-  --color-accent: #d1dce5;
+  --color-accent: #f2f1f1;
+  /* custom color */
+  --color-gray: #f2f1f1;
+  --color-pink: #edc5c5;
+  --color-white-pink: #f1e2ea;
+  --color-accent-pink: #e69f9f;
 }
 
 /* HTML elements */
@@ -84,7 +111,8 @@ body {
 }
 
 footer {
-  padding: var(--spacing-6) var(--spacing-0);
+  padding: var(--spacing-24) var(--spacing-0) var(--spacing-6) var(--spacing-0);
+  text-align: center;
 }
 
 hr {
@@ -251,7 +279,11 @@ a:focus {
 }
 
 .global-header {
-  margin-bottom: var(--spacing-12);
+  background-color: var(--color-accent);
+  height: 250px;
+  /* padding: var(--spacing-32) var(--spacing-12); */
+  margin: var(--spacing-16) var(--spacing-16);
+  margin-bottom: var(--spacing-24);
 }
 
 .main-heading {
@@ -269,10 +301,25 @@ a:focus {
 }
 
 .post-list-item h2 {
+  line-height: var(--lineHeight-normal);
   font-size: var(--fontSize-4);
   color: var(--color-primary);
   margin-bottom: var(--spacing-2);
   margin-top: var(--spacing-0);
+}
+
+/* 글 제목 밑줄 효과 */
+.underline {
+  background-repeat: no-repeat;
+  background-size: 0% 100%;
+  transition: background-size 0.8s;
+  cursor: pointer;
+}
+.underline.gray {
+  background-image: linear-gradient(transparent 60%, var(--color-accent) 10%);
+}
+.underline:hover {
+  background-size: 100% 100%;
 }
 
 .post-list-item header {
@@ -292,14 +339,61 @@ a:focus {
 }
 
 .bio p {
-  margin-bottom: var(--spacing-0);
+  margin-top: var(--spacing-3);
+}
+
+.bio-heart {
+  position: absolute;
+  z-index: 2;
+  margin: 3px 0 0px 51px;
+  background-color: #ff68b4;
+  height: 20px;
+  width: 20px;
+  transform: rotate(-45deg);
+  animation-name: beat;
+  animation-duration: 1s;
+  animation-iteration-count: infinite;
+}
+.bio-heart:after {
+  background-color: #ff68b4;
+  content: "";
+  border-radius: 50%;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: 0px;
+  left: 10px;
+}
+.bio-heart:before {
+  background-color: #ff68b4;
+  content: "";
+  border-radius: 50%;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  top: -10px;
+  left: 0px;
+}
+
+@keyframes beat {
+  0% {
+    transform: scale(1) rotate(-45deg);
+  }
+  50% {
+    transform: scale(0.8) rotate(-45deg);
+  }
 }
 
 .bio-avatar {
   margin-right: var(--spacing-4);
   margin-bottom: var(--spacing-0);
-  min-width: 50px;
+  min-width: 70px;
+  min-height: 70px;
   border-radius: 100%;
+}
+
+.bio-summary {
+  color: var(--color-text-light);
 }
 
 .blog-post header h1 {
@@ -329,5 +423,10 @@ a:focus {
   ul,
   ol {
     list-style-position: inside;
+  }
+
+  .global-header {
+    margin: var(--spacing-12) var(--spacing-6);
+    margin-bottom: var(--spacing-24);
   }
 }

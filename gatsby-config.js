@@ -1,15 +1,13 @@
 module.exports = {
   siteMetadata: {
-    title: `Gatsby Starter Blog`,
+    title: ``,
     author: {
       name: `주희(Joy)`,
-      summary: `who lives and works in San Francisco building useful things.`,
+      summary: `가치를 고민하는 과정을 함께해요`,
     },
-    description: `A starter blog demonstrating what Gatsby can do.`,
-    siteUrl: `https://gatsbystarterblogsource.gatsbyjs.io/`,
-    social: {
-      twitter: `kylemathews`,
-    },
+    // description: `A starter blog demonstrating what Gatsby can do.`,
+    // siteUrl: `https://gatsbystarterblogsource.gatsbyjs.io/`,
+    // social: {},
   },
   plugins: [
     `gatsby-plugin-image`,
@@ -69,15 +67,15 @@ module.exports = {
         feeds: [
           {
             serialize: ({ query: { site, allMarkdownRemark } }) => {
-              return allMarkdownRemark.nodes.map(node => {
+              return allMarkdownRemark.nodes.map((node) => {
                 return Object.assign({}, node.frontmatter, {
                   description: node.excerpt,
                   date: node.frontmatter.date,
                   url: site.siteMetadata.siteUrl + node.fields.slug,
                   guid: site.siteMetadata.siteUrl + node.fields.slug,
                   custom_elements: [{ "content:encoded": node.html }],
-                })
-              })
+                });
+              });
             },
             query: `
               {
@@ -107,8 +105,8 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Gatsby Starter Blog`,
-        short_name: `GatsbyJS`,
+        name: `JOYDEV LOG`,
+        short_name: `Joy`,
         start_url: `/`,
         background_color: `#ffffff`,
         // This will impact how browsers show your PWA/website
@@ -119,4 +117,4 @@ module.exports = {
       },
     },
   ],
-}
+};
