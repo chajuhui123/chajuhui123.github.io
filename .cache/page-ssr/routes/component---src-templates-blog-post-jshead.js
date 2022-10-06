@@ -1030,6 +1030,41 @@ Seo.propTypes = {
 
 /***/ }),
 
+/***/ "./src/components/tag.js":
+/*!*******************************!*\
+  !*** ./src/components/tag.js ***!
+  \*******************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "react");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_1__);
+
+
+
+const Tag = ({
+  category
+}) => {
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "tag"
+  }, "#", category);
+};
+
+Tag.defaultProps = {
+  category: ``
+};
+Tag.propTypes = {
+  category: (prop_types__WEBPACK_IMPORTED_MODULE_1___default().string.isRequired)
+};
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Tag);
+
+/***/ }),
+
 /***/ "./src/templates/blog-post.js?export=head":
 /*!************************************************!*\
   !*** ./src/templates/blog-post.js?export=head ***!
@@ -1047,6 +1082,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_bio__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../components/bio */ "./src/components/bio.js");
 /* harmony import */ var _components_layout__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../components/layout */ "./src/components/layout.js");
 /* harmony import */ var _components_seo__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../components/seo */ "./src/components/seo.js");
+/* harmony import */ var _components_tag__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../components/tag */ "./src/components/tag.js");
+
 
 
 
@@ -1076,7 +1113,11 @@ const BlogPostTemplate = ({
     itemType: "http://schema.org/Article"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("header", null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("h1", {
     itemProp: "headline"
-  }, post.frontmatter.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, formattedDate)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", {
+  }, post.frontmatter.title), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("div", {
+    className: "blog-post-header-description"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("p", null, formattedDate), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement(_components_tag__WEBPACK_IMPORTED_MODULE_5__["default"], {
+    category: post.frontmatter.category
+  }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("hr", {
     className: "blog-post-hr"
   }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0__.createElement("section", {
     dangerouslySetInnerHTML: {
@@ -1107,7 +1148,7 @@ const Head = ({
   });
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (BlogPostTemplate);
-const pageQuery = "3085459379";
+const pageQuery = "4209864562";
 
 /***/ }),
 
