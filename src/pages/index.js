@@ -4,6 +4,7 @@ import { Link, graphql } from "gatsby";
 import Bio from "../components/bio";
 import Layout from "../components/layout";
 import Seo from "../components/seo";
+import Tag from "../components/tag";
 
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`;
@@ -43,6 +44,9 @@ const BlogIndex = ({ data, location }) => {
                 itemType="http://schema.org/Article"
               >
                 <header>
+                  <div style={{ marginBottom: "10px" }}>
+                    <Tag category={post.frontmatter.category} />
+                  </div>
                   <h2>
                     <Link to={post.fields.slug} itemProp="url">
                       <span className="underline gray" itemProp="headline">
@@ -50,6 +54,7 @@ const BlogIndex = ({ data, location }) => {
                       </span>
                     </Link>
                   </h2>
+
                   <small>{formattedDate}</small>
                 </header>
                 <section>
@@ -94,6 +99,7 @@ export const pageQuery = graphql`
         frontmatter {
           date(formatString: "MMMM DD, YYYY")
           title
+          category
           description
         }
       }
