@@ -17,8 +17,11 @@ const BlogPostTemplate = ({
     date.getMonth() + 1
   }월 ${date.getDate()}일`;
 
+<<<<<<< HEAD
   console.log(post.frontmatter);
 
+=======
+>>>>>>> 54cb395d3db00cbd3870316e3d472ee49ebefe5b
   return (
     <Layout location={location} title={siteTitle}>
       <article
@@ -28,10 +31,14 @@ const BlogPostTemplate = ({
       >
         <header>
           <h1 itemProp="headline">{post.frontmatter.title}</h1>
+<<<<<<< HEAD
           <div className="blog-post-header-description">
             <p>{formattedDate}</p>
             <Tag category={post.frontmatter.category} />
           </div>
+=======
+          <p>{formattedDate}</p>
+>>>>>>> 54cb395d3db00cbd3870316e3d472ee49ebefe5b
         </header>
         <hr className="blog-post-hr" />
         <section
