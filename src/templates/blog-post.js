@@ -4,12 +4,20 @@ import { Link, graphql } from "gatsby";
 import Bio from "../components/bio";
 import Layout from "../components/layout";
 import Seo from "../components/seo";
+import Tag from "../components/tag";
 
 const BlogPostTemplate = ({
   data: { previous, next, site, markdownRemark: post },
   location,
 }) => {
   const siteTitle = site.siteMetadata?.title || `Title`;
+
+  const date = new Date(post.frontmatter.date);
+  const formattedDate = `${date.getFullYear()}년 ${
+    date.getMonth() + 1
+  }월 ${date.getDate()}일`;
+
+  console.log(post.frontmatter);
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -20,27 +28,23 @@ const BlogPostTemplate = ({
       >
         <header>
           <h1 itemProp="headline">{post.frontmatter.title}</h1>
-          <p>{post.frontmatter.date}</p>
+          <div className="blog-post-header-description">
+            <p>{formattedDate}</p>
+            <Tag category={post.frontmatter.category} />
+          </div>
         </header>
+        <hr className="blog-post-hr" />
         <section
           dangerouslySetInnerHTML={{ __html: post.html }}
           itemProp="articleBody"
         />
-        <hr />
         <footer>
+          <hr className="blog-post-hr" />
           <Bio />
         </footer>
       </article>
       <nav className="blog-post-nav">
-        <ul
-          style={{
-            display: `flex`,
-            flexWrap: `wrap`,
-            justifyContent: `space-between`,
-            listStyle: `none`,
-            padding: 0,
-          }}
-        >
+        <ul>
           <li>
             {previous && (
               <Link to={previous.fields.slug} rel="prev">
@@ -89,6 +93,7 @@ export const pageQuery = graphql`
       html
       frontmatter {
         title
+        category
         date(formatString: "MMMM DD, YYYY")
         description
       }
