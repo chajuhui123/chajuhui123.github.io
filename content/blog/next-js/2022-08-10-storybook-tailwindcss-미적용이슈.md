@@ -1,7 +1,7 @@
 ---
-title: 'NextJS Storybook 환경에서 Tailwind css 미적용 이슈 해결하기'
+title: "NextJS Storybook 환경에서 Tailwind css 미적용 이슈 해결하기"
 date: 2022-08-10 12:24
-category: 'test'
+category: "NextJS"
 draft: false
 ---
 
@@ -18,7 +18,7 @@ Storybook은 프론트에서 작업한 컴포넌트를 관리하고 테스트하
 `.storybook/preview.js`
 
 ```jsx
-import '../styles/globals.css'
+import "../styles/globals.css";
 ```
 
 `styles/globals.css`
@@ -36,29 +36,29 @@ tailwindcss 가 적용되려면 post-css 패키지를 적용해, 프로젝트의
 `.storybook/main.js`
 
 ```jsx
-const path = require('path')
+const path = require("path");
 module.exports = {
-  stories: ['../src/**/*.stories.mdx', '../src/**/*.stories.@(js|jsx|ts|tsx)'],
+  stories: ["../src/**/*.stories.mdx", "../src/**/*.stories.@(js|jsx|ts|tsx)"],
   addons: [
-    '@storybook/addon-links',
-    '@storybook/addon-essentials',
-    '@storybook/addon-interactions',
-    'storybook-addon-next-router',
+    "@storybook/addon-links",
+    "@storybook/addon-essentials",
+    "@storybook/addon-interactions",
+    "storybook-addon-next-router",
     // post css 패키지 적용
     {
-      name: '@storybook/addon-postcss',
+      name: "@storybook/addon-postcss",
       options: {
         postcssLoaderOptions: {
-          implementation: require('postcss'),
+          implementation: require("postcss"),
         },
       },
     },
   ],
-  framework: '@storybook/react',
+  framework: "@storybook/react",
   core: {
-    builder: '@storybook/builder-webpack5',
+    builder: "@storybook/builder-webpack5",
   },
-}
+};
 ```
 
 셋팅 후 스토리북 환경을 켜보니 storybook 빌드 상태가 99% 에서 진전이 되지 않았습니다. (`99% done plugins webpack-hot-middlewarewebpack built preview b15e0ed4179d6dceff64 in 3202ms`)
