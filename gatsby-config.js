@@ -105,7 +105,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `JOYDEV LOG`,
+        name: `JOY DEVLOG`,
         short_name: `Joy`,
         start_url: `/`,
         background_color: `#ffffff`,
@@ -113,7 +113,7 @@ module.exports = {
         // https://css-tricks.com/meta-theme-color-and-trickery/
         // theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/gatsby-icon.png`, // This path is relative to the root of the site.
+        icon: `src/images/heart-icon.png`, // This path is relative to the root of the site.
       },
     },
   ],
