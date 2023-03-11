@@ -1,14 +1,20 @@
-import * as React from "react";
+import React, { useMemo } from "react";
 import { Link, graphql } from "gatsby";
 
 import Bio from "../components/bio";
 import Layout from "../components/layout";
 import Seo from "../components/seo";
 import Tag from "../components/tag";
+import Category from "../components/category";
 
 const BlogIndex = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`;
   const posts = data.allMarkdownRemark.nodes;
+
+  const categories = useMemo(
+    () => [...new Set(posts.map((node) => node.frontmatter.category))],
+    []
+  );
 
   if (posts.length === 0) {
     return (
@@ -23,11 +29,12 @@ const BlogIndex = ({ data, location }) => {
     );
   }
 
-  console.log(new Date(posts[0].frontmatter.date));
-
   return (
     <Layout location={location} title={siteTitle}>
       <Bio />
+
+      <Category categories={categories} />
+
       <ol style={{ listStyle: `none` }}>
         {posts.map((post) => {
           const title = post.frontmatter.title || post.fields.slug;
