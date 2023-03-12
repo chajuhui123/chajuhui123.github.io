@@ -1,6 +1,5 @@
-import React, { useMemo } from "react";
+import React, { useMemo, useState } from "react";
 import { Link, graphql } from "gatsby";
-
 import Bio from "../components/bio";
 import Layout from "../components/layout";
 import Seo from "../components/seo";
@@ -8,6 +7,8 @@ import Tag from "../components/tag";
 import Category from "../components/category";
 
 const BlogIndex = ({ data, location }) => {
+  const [selectedCategory, setSelectedCategory] = useState("ALL");
+
   const siteTitle = data.site.siteMetadata?.title || `Title`;
   const posts = data.allMarkdownRemark.nodes;
 
@@ -16,15 +17,19 @@ const BlogIndex = ({ data, location }) => {
     []
   );
 
+  const handleChangeCategory = (select) => {
+    if (!categories.includes(select)) {
+      setSelectedCategory("ALL");
+      return;
+    }
+    setSelectedCategory(select);
+  };
+
   if (posts.length === 0) {
     return (
       <Layout location={location} title={siteTitle}>
         <Bio />
-        <p>
-          No blog posts found. Add markdown posts to "content/blog" (or the
-          directory you specified for the "gatsby-source-filesystem" plugin in
-          gatsby-config.js).
-        </p>
+        <p>포스팅이 존재하지 않습니다 😢</p>
       </Layout>
     );
   }
@@ -33,10 +38,20 @@ const BlogIndex = ({ data, location }) => {
     <Layout location={location} title={siteTitle}>
       <Bio />
 
-      <Category categories={categories} />
+      <Category
+        categories={categories}
+        selectedCategory={selectedCategory}
+        handleChangeCategory={handleChangeCategory}
+      />
 
       <ol style={{ listStyle: `none` }}>
         {posts.map((post) => {
+          if (
+            selectedCategory !== "ALL" &&
+            selectedCategory !== post.frontmatter.category
+          )
+            return;
+
           const title = post.frontmatter.title || post.fields.slug;
           const date = new Date(post.frontmatter.date);
           const formattedDate = `${date.getFullYear()}년 ${
