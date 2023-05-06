@@ -204,6 +204,7 @@ ol {
   /* margin-bottom: var(--spacing-8); */
   list-style-position: outside;
   list-style-image: none;
+  margin-bottom: var(--spacing-8);
 }
 
 ul li,
