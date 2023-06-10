@@ -5,11 +5,12 @@ module.exports = {
       name: `주희(Joy)`,
       summary: `가치를 고민하는 과정을 함께해요`,
     },
+    siteUrl: `https://chajuhui123.github.io/`,
     // description: `A starter blog demonstrating what Gatsby can do.`,
-    // siteUrl: `https://gatsbystarterblogsource.gatsbyjs.io/`,
     // social: {},
   },
   plugins: [
+    `gatsby-plugin-advanced-sitemap`,
     `gatsby-plugin-image`,
     {
       resolve: `gatsby-source-filesystem`,

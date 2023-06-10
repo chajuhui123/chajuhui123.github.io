@@ -103,3 +103,14 @@ Looking for more guidance? Full documentation for Gatsby lives [on the website](
 Gatsby Cloud is an end-to-end cloud platform specifically built for the Gatsby framework that combines a modern developer experience with an optimized, global edge network.
 
 <!-- AUTO-GENERATED-CONTENT:END -->
+
+---
+
+1. 블로그 배포 (with. github page)
+
+```bash
+npm run deploy
+// package.json 명령어 참고 => "deploy": "gatsby build && gh-pages -d public -b deploy",
+```
+
+- gatsby 프로젝트 빌드 후, github pages 에 올라갈 static 파일이 deploy 브랜치에 반영됨
