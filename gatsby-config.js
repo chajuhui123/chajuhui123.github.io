@@ -5,7 +5,7 @@ module.exports = {
       name: `주희(Joy)`,
       summary: `가치를 고민하는 과정을 함께해요`,
     },
-    siteUrl: `https://chajuhui123.github.io/`,
+    siteUrl: `https://chajuhui123.github.io`,
     // description: `A starter blog demonstrating what Gatsby can do.`,
     // social: {},
   },
@@ -114,7 +114,7 @@ module.exports = {
         // https://css-tricks.com/meta-theme-color-and-trickery/
         // theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/heart-icon.png`, // This path is relative to the root of the site.
+        icon: `${__dirname}/src/images/heart-icon.png`, // This path is relative to the root of the site.
       },
     },
   ],
