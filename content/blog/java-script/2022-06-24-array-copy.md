@@ -1,7 +1,7 @@
 ---
-title: '얕은 복사(Shallow copy) VS 깊은 복사 (Deep Copy)'
+title: "얕은 복사(Shallow copy) VS 깊은 복사 (Deep Copy)"
 date: 2022-06-24
-category: 'javaScript'
+category: "JavaScript"
 draft: false
 ---
 
@@ -39,15 +39,15 @@ const obj = {
   b: {
     c: 2,
   },
-}
+};
 
-const copiedObj = Object.assign({}, obj)
+const copiedObj = Object.assign({}, obj);
 // {} 객체에 obj 객체를 복사
 
-copiedObj.b.c = 3
+copiedObj.b.c = 3;
 
-obj === copiedObj // false
-obj.b.c === copiedObj.b.c // true
+obj === copiedObj; // false
+obj.b.c === copiedObj.b.c; // true
 ```
 
 ### 전개연산자
@@ -58,14 +58,14 @@ const obj = {
   b: {
     c: 2,
   },
-}
+};
 
-const copiedObj = { ...obj }
+const copiedObj = { ...obj };
 
-copiedObj.b.c = 3
+copiedObj.b.c = 3;
 
-obj === copiedObj // false
-obj.b.c === copiedObj.b.c // true
+obj === copiedObj; // false
+obj.b.c === copiedObj.b.c; // true
 ```
 
 ## 2. 깊은 복사 Deep Copy
@@ -80,25 +80,25 @@ const obj = {
   b: {
     c: 2,
   },
-}
+};
 
 function copyObj(obj) {
-  const result = {}
+  const result = {};
 
   for (let key in obj) {
-    if (typeof obj[key] === 'object') {
-      result[key] = copyObj(obj[key])
+    if (typeof obj[key] === "object") {
+      result[key] = copyObj(obj[key]);
     } else {
-      result[key] = obj[key]
+      result[key] = obj[key];
     }
   }
 
-  return result
+  return result;
 }
 
-const copiedObj = copyObj(obj)
+const copiedObj = copyObj(obj);
 
-copiedObj.b.c = 3
+copiedObj.b.c = 3;
 
-obj.b.c === copiedObj.b.c //false
+obj.b.c === copiedObj.b.c; //false
 ```

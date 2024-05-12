@@ -1,7 +1,7 @@
 ---
-title: 'JS에서 if - else if - else 문을 지양해야하는 이유'
+title: "JS에서 if - else if - else 문을 지양해야하는 이유"
 date: 2022-05-30
-category: 'javaScript'
+category: "JavaScript"
 draft: false
 ---
 
