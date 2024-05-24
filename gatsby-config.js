@@ -117,5 +117,11 @@ module.exports = {
         icon: `src/images/heart-icon.png`, // This path is relative to the root of the site.
       },
     },
+    {
+      resolve: `gatsby-plugin-google-adsense`,
+      options: {
+        publisherId: `ca-pub-2304448401404147`,
+      },
+    },
   ],
 };
