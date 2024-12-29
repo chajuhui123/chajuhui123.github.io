@@ -507,3 +507,17 @@ a:focus {
     margin-bottom: var(--spacing-24);
   }
 }
+
+.language-text {
+  color: var(--color-text-light) !important;
+  background-color: var(--color-accent) !important;
+}
+
+.gatsby-highlight {
+  font-size: var(--fontSize-0);
+}
+
+.gatsby-highlight pre[class*="language-"] {
+  border-radius: 8px;
+  min-width: 100%;
+}
