@@ -98,7 +98,7 @@ export const useFetch = (key, fetchFn) => {
 2. (catch) 패치 과정에서 에러가 리턴되었다면 error 응답을 저장합니다.
 3. (finally) 로딩 상태를 끝냅니다.
 
-data, error, isLoading 값을 리턴해주는 useFetch 훅을 작성하였습니다. 해당 훅은 컴포넌트가 상태일 때만, 실행되는 훅입니다.
+data, error, isLoading 값을 리턴해주는 useFetch 훅을 작성하였습니다. 해당 훅은 컴포넌트가 마운트 상태일 때만, 실행되는 훅입니다.
 
 ```js
 // cache.js
@@ -161,7 +161,7 @@ React Query를 활용할 때, 필수 인자 중 하나는 `쿼리 키(queryKey)`
 
 쿼리 키를 통해 캐싱되어 있는 데이터와 비교하여, 새로운 데이터를 가져올지, 캐시되어 있는 데이터를 사용할지 결정합니다.
 
-- 쿼리 키와 일치하는 캐싱 데이터가 없을 때, 새롭게 해당 키로 하는 데이터를 저장하고
+- 쿼리 키와 일치하는 캐싱 데이터가 없을 때, 새롭게 해당 키로 데이터를 저장하고
 - 이미 존재하는 데이터가 있다면, 변질도(out-of-date)를 체크하여 캐싱 데이터 사용 유무를 결정합니다.
   - 캐시된 데이터를 사용하게 되어 **중복 요청을 줄일 수** 있습니다.
 
@@ -175,3 +175,79 @@ React Query를 활용할 때, 필수 인자 중 하나는 `쿼리 키(queryKey)`
 - 백그라운드 데이터 업데이트
 - 포커싱, 네트워크 재연결 등… 데이터 자동 리페치
 - 전역 상태 관리로 변경
+
+
+(작업 예정)
+
+캐싱된 데이터의 변질도는 React Query 가 제공하는 staleTime 옵션으로 **Fresh/Stale** 상태를 결정할 수 있습니다.
+
+캐시된 데이터가 fresh 하다면 캐싱된 데이터를 사용하고, 만약 데이터가 stale 하다면, 서버에 다시 요청하여 새로운 데이터를 가져옵니다.
+
+```js
+// 중복 요청 방지를 위한 requestTracker.js
+
+const pendingRequests = new Map();
+
+export const trackRequest = (key, promise) => {
+  pendingRequests.set(key, promise);
+};
+
+export const getTrackedRequest = (key) => pendingRequests.get(key);
+
+export const clearTrackedRequest = (key) => {
+  pendingRequests.delete(key);
+};
+```
+
+```js
+// 패치문에 중복 요청 방지 로직 추가
+
+import {
+  trackRequest,
+  getTrackedRequest,
+  clearTrackedRequest,
+} from "./requestTracker";
+
+export const useFetch = (key, fetchFn) => {
+  // ... 기존 코드 유지
+
+  useEffect(() => {
+    if (data) return;
+
+    const trackedRequest = getTrackedRequest(key);
+    if (trackedRequest) {
+      trackedRequest
+        .then(setData)
+        .catch(setError)
+        .finally(() => setIsLoading(false));
+      return;
+    }
+
+    const fetchPromise = fetchFn()
+      .then((response) => {
+        setToCache(key, response);
+        setData(response);
+        setError(null);
+        return response;
+      })
+      .catch((err) => {
+        setError(err);
+        throw err;
+      })
+      .finally(() => {
+        setIsLoading(false);
+        clearTrackedRequest(key);
+      });
+
+    trackRequest(key, fetchPromise);
+  }, [key, fetchFn, data]);
+
+  return { data, error, isLoading };
+};
+```
+
+---
+
+참고자료
+
+- [react query](https://www.heropy.dev/p/HZaKIE)
