@@ -2,7 +2,7 @@
 title: "[WIP] No React Query, 나만의 캐싱 라이브러리 만들기"
 date: 2024-12-21
 category: "front"
-draft: false
+draft: true
 ---
 
 ## 서론
@@ -175,7 +175,6 @@ React Query를 활용할 때, 필수 인자 중 하나는 `쿼리 키(queryKey)`
 - 백그라운드 데이터 업데이트
 - 포커싱, 네트워크 재연결 등… 데이터 자동 리페치
 - 전역 상태 관리로 변경
-
 
 (작업 예정)
 
