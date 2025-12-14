@@ -11,6 +11,11 @@ const BlogIndex = ({ data, location }) => {
 
   const siteTitle = data.site.siteMetadata?.title || `Title`;
   const posts = data.allMarkdownRemark.nodes;
+  const visiblePosts = posts?.filter((post) => {
+    if (post.frontmatter?.draft === true) return false;
+    if (selectedCategory === "ALL") return true;
+    return selectedCategory === post.frontmatter?.category;
+  });
 
   const categories = useMemo(
     () => [...new Set(posts.map((node) => node.frontmatter.category))],
@@ -45,13 +50,7 @@ const BlogIndex = ({ data, location }) => {
       />
 
       <ol style={{ listStyle: `none` }}>
-        {posts.map((post) => {
-          if (
-            selectedCategory !== "ALL" &&
-            selectedCategory !== post.frontmatter.category
-          )
-            return;
-
+        {visiblePosts.map((post) => {
           const title = post.frontmatter.title || post.fields.slug;
           const date = new Date(post.frontmatter.date);
           const formattedDate = `${date.getFullYear()}년 ${
@@ -123,6 +122,7 @@ export const pageQuery = graphql`
           title
           category
           description
+          draft
         }
       }
     }

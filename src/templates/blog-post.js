@@ -94,6 +94,7 @@ export const pageQuery = graphql`
         category
         date(formatString: "MMMM DD, YYYY")
         description
+        draft
       }
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {
