@@ -251,11 +251,37 @@ table {
   width: 100%;
   margin-bottom: var(--spacing-8);
   border-collapse: collapse;
-  border-spacing: 0.25rem;
+  border-spacing: 0;
+  font-size: var(--fontSize-1);
+  overflow-x: auto;
+  display: block;
 }
 
 table thead tr th {
-  border-bottom: 1px solid var(--color-accent);
+  background-color: #fdf8f8;
+  color: var(--color-heading);
+  font-weight: var(--fontWeight-medium);
+  padding: var(--spacing-2) var(--spacing-3);
+  border: 1px solid #eaeaea;
+  text-align: left;
+  white-space: nowrap;
+}
+
+table tbody tr td {
+  padding: var(--spacing-2) var(--spacing-3);
+  border: 1px solid var(--color-accent);
+  color: var(--color-text);
+  line-height: var(--lineHeight-relaxed);
+  vertical-align: top;
+}
+
+table tbody tr:nth-child(even) {
+  /* background-color: #fdf8f8; */
+}
+
+table tbody tr:hover {
+  background-color: #fdf8f8;
+  transition: background-color 0.15s ease;
 }
 
 /* Link */
