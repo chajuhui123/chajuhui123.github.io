@@ -3,7 +3,7 @@ module.exports = {
     title: ``,
     author: {
       name: `주희(Joy)`,
-      summary: `가치를 고민하는 과정을 함께해요`,
+      summary: `학습을 넘어, 기술의 가치와 이유를 함께 고민해보아요`,
     },
     siteUrl: `https://chajuhui123.github.io`,
     // description: `A starter blog demonstrating what Gatsby can do.`,

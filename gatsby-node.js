@@ -109,6 +109,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       description: String
       date: Date @dateformat
       draft: Boolean
+      archived: Boolean
     }
 
     type Fields {

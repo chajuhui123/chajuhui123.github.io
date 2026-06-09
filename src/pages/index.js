@@ -13,13 +13,14 @@ const BlogIndex = ({ data, location }) => {
   const posts = data.allMarkdownRemark.nodes;
   const visiblePosts = posts?.filter((post) => {
     if (post.frontmatter?.draft === true) return false;
+    if (post.frontmatter?.archived === true) return false;
     if (selectedCategory === "ALL") return true;
     return selectedCategory === post.frontmatter?.category;
   });
 
   const categories = useMemo(
     () => [...new Set(posts.map((node) => node.frontmatter.category))],
-    []
+    [],
   );
 
   const handleChangeCategory = (select) => {
@@ -48,6 +49,12 @@ const BlogIndex = ({ data, location }) => {
         selectedCategory={selectedCategory}
         handleChangeCategory={handleChangeCategory}
       />
+
+      <div className="draft-nav">
+        <Link to="/draft-posting" className="draft-nav-link">
+          Archived Posts
+        </Link>
+      </div>
 
       <ol style={{ listStyle: `none` }}>
         {visiblePosts.map((post) => {
@@ -111,7 +118,10 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }, filter: { frontmatter: { draft: { ne: true } } }) {
+    allMarkdownRemark(
+      sort: { fields: [frontmatter___date], order: DESC }
+      filter: { frontmatter: { draft: { ne: true }, archived: { ne: true } } }
+    ) {
       nodes {
         excerpt
         fields {
@@ -123,6 +133,7 @@ export const pageQuery = graphql`
           category
           description
           draft
+          archived
         }
       }
     }
