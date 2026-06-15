@@ -1,0 +1,99 @@
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+@font-face {
+  font-family: "Pretendard-Regular";
+  src: url("https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff")
+    format("woff");
+  font-weight: 300;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "LeferiPoint-BlackA";
+  src: url("https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/LeferiPoint-BlackA.woff")
+    format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+@theme inline {
+  --color-primary: #edc5c5;
+  --color-pink: #edc5c5;
+  --color-accent: #f2f1f1;
+  --color-accent-pink: #e69f9f;
+  --color-white-pink: #f1e2ea;
+  --color-text: #2e353f;
+  --color-text-light: #7d7d7d;
+  --color-heading: #1a202c;
+  --font-family-heading: "LeferiPoint-BlackA", var(--font-montserrat), Montserrat, system-ui, sans-serif;
+  --font-family-body: "Pretendard-Regular", var(--font-merriweather), Merriweather, system-ui, sans-serif;
+}
+
+body {
+  font-family: var(--font-family-body);
+  font-size: 1rem;
+  color: var(--color-text);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-family-heading);
+  letter-spacing: -0.025em;
+}
+
+a {
+  color: var(--color-primary);
+}
+
+a:hover,
+a:focus {
+  text-decoration: none;
+}
+
+.prose :where(pre):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  background-color: #2d2d2d;
+  color: #ccc;
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+}
+
+figure[data-rehype-pretty-code-figure] {
+  margin-bottom: 2rem;
+}
+
+figure[data-rehype-pretty-code-figure] pre {
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  font-size: 0.833rem;
+}
+
+.prose :where(code):not(:where(pre *)) {
+  color: var(--color-text-light);
+  background-color: var(--color-accent);
+  padding: 0.125rem 0.25rem;
+  border-radius: 0.25rem;
+  font-size: 0.875em;
+}
+
+.prose :where(table):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  display: block;
+  overflow-x: auto;
+}
+
+.prose :where(thead th):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  background-color: #fdf8f8;
+  white-space: nowrap;
+}
+
+.prose :where(tbody tr:hover):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  background-color: #fdf8f8;
+}
