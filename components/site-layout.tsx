@@ -17,14 +17,7 @@ export function SiteLayout({ children, isRootPath = false }: SiteLayoutProps) {
       >
         <main>{children}</main>
         <footer className="pb-6 pt-24 text-center">
-          © {new Date().getFullYear()}, Built with{" "}
-          <a href="https://nextjs.org" className="text-primary hover:underline">
-            Next.js
-          </a>
-          {" · "}
-          <a href="/rss.xml" className="text-primary hover:underline">
-            RSS
-          </a>
+          © {new Date().getFullYear()}, Joy. All rights reserved.
         </footer>
       </div>
     </div>

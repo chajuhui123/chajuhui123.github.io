@@ -42,7 +42,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="ko" className={`${montserrat.variable} ${merriweather.variable}`}>
+    <html
+      lang="ko"
+      className={`${montserrat.variable} ${merriweather.variable}`}
+    >
       <body className="min-h-full antialiased">
         {children}
         <Script
