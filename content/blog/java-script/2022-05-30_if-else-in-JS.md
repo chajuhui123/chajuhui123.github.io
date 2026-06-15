@@ -2,7 +2,7 @@
 title: "JS에서 if - else if - else 문을 지양해야하는 이유"
 date: 2022-05-30
 category: "JavaScript"
-draft: false
+archived: true
 ---
 
 # JS에서 If - else if - else 문 작성을 지양하는 이유?

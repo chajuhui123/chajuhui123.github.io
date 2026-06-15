@@ -40,7 +40,7 @@ Zero Trust는 '`아무도 믿지 않는다`' 라는 패러다임으로 Cloud 에
 
 이러한 상황에서 하시코프는 네트환경 내부라는 이유만으로 신뢰 하지 않는, 아무도 믿지 않는 `Zero Trust` 패러다임을 기반으로, Identity 기반의 보안을 강조하였습니다.
 
-![identity](../../../src/images/hashicorp.png)
+![identity](/images/hashicorp.png)
 
 사용자, app, machine에 대한 명확한 인증, 인가, 그리고 기본적인 deny를 통해 보안의 그물망을 촘촘히 하는 목표를 가지고 있었습니다.
 
