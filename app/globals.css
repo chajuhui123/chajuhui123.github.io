@@ -1,26 +1,167 @@
 @import "tailwindcss";
 
+/*
+ * Design tokens
+ * - Color: neutral-only semantic scale built on Tailwind's zinc palette.
+ *   No accent color yet — components should rely on foreground/muted/border
+ *   contrast rather than color for now.
+ * - Type scale: tuned for long-form Korean reading (looser line-height than
+ *   Tailwind's defaults). Semantic mapping for blog content:
+ *     h1 → text-4xl font-bold      h2 → text-3xl font-semibold
+ *     h3 → text-2xl font-semibold  h4 → text-xl font-semibold
+ *     lead paragraph → text-lg     body → text-base
+ *     caption/meta → text-sm text-muted-foreground
+ *     tiny/labels → text-xs
+ */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: var(--color-white);
+  --foreground: var(--color-zinc-900);
+
+  --surface: var(--color-white);
+  --surface-foreground: var(--color-zinc-900);
+
+  --muted: var(--color-zinc-100);
+  --muted-foreground: var(--color-zinc-500);
+
+  --border: var(--color-zinc-200);
+  --ring: var(--color-zinc-400);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: var(--color-zinc-950);
+    --foreground: var(--color-zinc-50);
+
+    --surface: var(--color-zinc-900);
+    --surface-foreground: var(--color-zinc-50);
+
+    --muted: var(--color-zinc-800);
+    --muted-foreground: var(--color-zinc-400);
+
+    --border: var(--color-zinc-800);
+    --ring: var(--color-zinc-600);
+  }
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+
+  --color-surface: var(--surface);
+  --color-surface-foreground: var(--surface-foreground);
+
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+
+  --color-border: var(--border);
+  --color-ring: var(--ring);
+
+  --font-sans: var(--font-pretendard);
+  --font-display: var(--font-space-grotesk);
+  --font-mono: var(--font-jetbrains-mono);
+
+  --text-xxs: 0.625rem;
+  --text-xxs--line-height: 0.875rem;
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1.125rem;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.5rem;
+  --text-base: 1rem;
+  --text-base--line-height: 1.75rem;
+  --text-lg: 1.125rem;
+  --text-lg--line-height: 1.875rem;
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 2rem;
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: 2.25rem;
+  --text-3xl: 1.875rem;
+  --text-3xl--line-height: 2.5rem;
+  --text-4xl: 2.25rem;
+  --text-4xl--line-height: 2.875rem;
+  --text-5xl: 3rem;
+  --text-5xl--line-height: 3.5rem;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  background: var(--color-background);
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  color: var(--color-foreground);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* Footer copyright text: collapses to nothing, unfolds, holds, then folds away again. */
+@keyframes copyright-reveal {
+  0%,
+  8% {
+    max-width: 0;
+    opacity: 0.35;
+  }
+  35%,
+  65% {
+    max-width: 18rem;
+    opacity: 1;
+  }
+  92%,
+  100% {
+    max-width: 0;
+    opacity: 0.35;
+  }
+}
+
+.copyright-text {
+  display: inline-block;
+  max-width: 0;
+  animation: copyright-reveal 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .copyright-text {
+    animation: none;
+    max-width: none;
+    opacity: 1;
+  }
+}
+
+/*
+ * Shiki code blocks: let our own surface color show through (drop Shiki's
+ * theme background), switch token colors for dark mode, and render an
+ * IDE-style line-number gutter via CSS counters.
+ */
+.shiki-wrapper .shiki,
+.shiki-wrapper .shiki span {
+  background-color: transparent !important;
+}
+
+@media (prefers-color-scheme: dark) {
+  .shiki-wrapper .shiki,
+  .shiki-wrapper .shiki span {
+    color: var(--shiki-dark) !important;
+    font-style: var(--shiki-dark-font-style) !important;
+    font-weight: var(--shiki-dark-font-weight) !important;
+    text-decoration: var(--shiki-dark-text-decoration) !important;
+  }
+}
+
+.shiki-wrapper .shiki code {
+  counter-reset: line;
+  display: grid;
+}
+
+.shiki-wrapper .shiki code .line {
+  padding-inline: 1.25rem;
+}
+
+.shiki-wrapper .shiki code .line::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 1.5rem;
+  margin-right: 1rem;
+  text-align: right;
+  color: var(--color-muted-foreground);
+  opacity: 0.6;
+  user-select: none;
 }
