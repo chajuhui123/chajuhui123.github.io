@@ -3,106 +3,12 @@ import { MDXRemote } from "next-mdx-remote/rsc";
 import remarkGfm from "remark-gfm";
 import { getAllSlugs, getPostBySlug } from "@/lib/posts";
 import { Heading, Text } from "@/components/ui/typography";
-import { Link } from "@/components/ui/link";
-import { List, ListItem } from "@/components/ui/list";
-import { Blockquote } from "@/components/ui/blockquote";
-import { Divider } from "@/components/ui/divider";
 import { Image } from "@/components/ui/image";
 import { Chip } from "@/components/ui/chip";
-import { InlineCode, CodeBlock } from "@/components/ui/code";
-import {
-  Table,
-  TableHeader,
-  TableBody,
-  TableRow,
-  TableHead,
-  TableCell,
-} from "@/components/ui/table";
-import { cn } from "@/lib/cn";
-import { type ComponentPropsWithoutRef, type ReactElement } from "react";
+import { mdxComponents } from "@/components/mdx/mdx-components";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
-};
-
-function Pre({
-  children,
-}: {
-  children: ReactElement<{ className?: string; children: string }>;
-}) {
-  const lang =
-    (children.props.className ?? "").replace("language-", "") || "text";
-  return <CodeBlock code={children.props.children} lang={lang} />;
-}
-
-function MdxImage({
-  className,
-  alt,
-  ...props
-}: ComponentPropsWithoutRef<"img">) {
-  return (
-    // next/image requires known width/height, but markdown images only ever
-    // give us src/alt, so fall back to a plain <img> for content images.
-    // eslint-disable-next-line @next/next/no-img-element
-    <img
-      alt={alt}
-      className={cn("w-full rounded-md border border-gray-1", className)}
-      {...props}
-    />
-  );
-}
-
-const mdxComponents = {
-  h1: ({ className, ...props }: ComponentPropsWithoutRef<"h1">) => (
-    <Heading
-      level={1}
-      className={cn("mt-12 first:mt-0", className)}
-      {...props}
-    />
-  ),
-  h2: ({ className, ...props }: ComponentPropsWithoutRef<"h2">) => (
-    <Heading
-      level={2}
-      className={cn("mt-12 first:mt-0", className)}
-      {...props}
-    />
-  ),
-  h3: ({ className, ...props }: ComponentPropsWithoutRef<"h3">) => (
-    <Heading
-      level={3}
-      className={cn("mt-5 first:mt-0", className)}
-      {...props}
-    />
-  ),
-  h4: ({ className, ...props }: ComponentPropsWithoutRef<"h4">) => (
-    <Heading
-      level={4}
-      className={cn("mt-5 first:mt-0", className)}
-      {...props}
-    />
-  ),
-  p: (props: ComponentPropsWithoutRef<"p">) => (
-    <Text variant="body" {...props} />
-  ),
-  a: Link,
-  ul: (props: ComponentPropsWithoutRef<"ul">) => <List as="ul" {...props} />,
-  ol: (props: ComponentPropsWithoutRef<"ol">) => <List as="ol" {...props} />,
-  li: ListItem,
-  blockquote: Blockquote,
-  hr: ({ className, ...props }: ComponentPropsWithoutRef<"hr">) => (
-    <Divider className={cn("my-6", className)} {...props} />
-  ),
-  img: MdxImage,
-  code: InlineCode,
-  pre: Pre,
-  table: ({ className, ...props }: ComponentPropsWithoutRef<"table">) => (
-    <Table className={cn("", className)} {...props} />
-  ),
-  thead: TableHeader,
-  tbody: TableBody,
-  tr: TableRow,
-  th: TableHead,
-  td: TableCell,
 };
 
 export function generateStaticParams() {
@@ -111,8 +17,9 @@ export function generateStaticParams() {
 
 export async function generateMetadata({ params }: PageProps) {
   const { slug } = await params;
-  if (!getAllSlugs().includes(slug)) return {};
-  const { frontmatter } = getPostBySlug(slug);
+  const decodedSlug = decodeURIComponent(slug);
+  if (!getAllSlugs().includes(decodedSlug)) return {};
+  const { frontmatter } = getPostBySlug(decodedSlug);
   return {
     title: frontmatter.title,
     description: frontmatter.description,
@@ -121,9 +28,10 @@ export async function generateMetadata({ params }: PageProps) {
 
 export default async function PostDetailPage({ params }: PageProps) {
   const { slug } = await params;
-  if (!getAllSlugs().includes(slug)) notFound();
+  const decodedSlug = decodeURIComponent(slug);
+  if (!getAllSlugs().includes(decodedSlug)) notFound();
 
-  const { frontmatter, content } = getPostBySlug(slug);
+  const { frontmatter, content } = getPostBySlug(decodedSlug);
 
   return (
     <article className="relative mx-auto flex w-full max-w-[50rem] flex-col gap-14 rounded-xl bg-surface pb-20 pt-10">
@@ -153,11 +61,12 @@ export default async function PostDetailPage({ params }: PageProps) {
       {frontmatter.image && (
         <div className="mb-12">
           <Image
-            className="max-h-[300px] w-full rounded-md object-cover border-none"
+            className="max-h-[300px] w-full rounded-none object-cover border-none sm:rounded-md"
+            quality={85}
             src={frontmatter.image}
             alt={frontmatter.title}
-            width={1000}
-            height={1000}
+            width={800}
+            height={300}
           />
         </div>
       )}
