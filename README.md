@@ -1,36 +1,37 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# chajuhui123.github.io
 
-## Getting Started
+[Next.js](https://nextjs.org) App Router로 만든 개인 블로그. `content/posts`, `content/stash`의 MDX 파일을 정적으로 빌드해서 GitHub Pages로 배포합니다.
 
-First, run the development server:
+## 로컬 개발
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
+pnpm install
 pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+`http://localhost:3000`에서 확인할 수 있습니다.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 글 작성
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- 정식 글: `content/posts/`
+- 과거 아카이브: `content/stash/`
 
-## Learn More
+frontmatter는 아래 형식을 따릅니다.
 
-To learn more about Next.js, take a look at the following resources:
+```md
+---
+title: "글 제목"
+date: 2026-01-01
+tags: ["태그"]
+description: "선택 사항"
+image: "/images/xxx.png" # 선택 사항, 커버 이미지
+---
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 배포
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+`main` 브랜치에 push되면 `.github/workflows/pages.yml`이 정적 export(`pnpm build` → `out/`)를 빌드해 GitHub Pages로 자동 배포합니다.
 
-## Deploy on Vercel
+## 커밋 컨벤션
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+커밋 메시지는 [gitmoji](https://gitmoji.dev/)로 시작해야 합니다 (`.husky/commit-msg`에서 검사). `pnpm commit`으로 인터랙티브하게 작성할 수 있습니다.
