@@ -6,7 +6,7 @@ export function Table({
   ...props
 }: ComponentPropsWithoutRef<"table">) {
   return (
-    <div className="w-full overflow-x-auto rounded-lg border border-border">
+    <div className="w-full overflow-x-auto rounded-md border border-gray-1">
       <table
         className={cn("w-full border-collapse text-sm", className)}
         {...props}
@@ -19,7 +19,7 @@ export function TableHeader({
   className,
   ...props
 }: ComponentPropsWithoutRef<"thead">) {
-  return <thead className={cn("bg-muted", className)} {...props} />;
+  return <thead className={cn("bg-gray-50", className)} {...props} />;
 }
 
 export function TableBody({
@@ -27,7 +27,7 @@ export function TableBody({
   ...props
 }: ComponentPropsWithoutRef<"tbody">) {
   return (
-    <tbody className={cn("divide-y divide-border", className)} {...props} />
+    <tbody className={cn("divide-y divide-gray-1", className)} {...props} />
   );
 }
 
@@ -45,7 +45,7 @@ export function TableHead({
   return (
     <th
       className={cn(
-        "px-4 py-3 text-left text-sm font-semibold text-foreground",
+        "px-4 py-3 text-left text-sm font-semibold text-text",
         className,
       )}
       {...props}
@@ -58,9 +58,6 @@ export function TableCell({
   ...props
 }: ComponentPropsWithoutRef<"td">) {
   return (
-    <td
-      className={cn("px-4 py-3 text-muted-foreground", className)}
-      {...props}
-    />
+    <td className={cn("px-4 py-3 text-sm text-text", className)} {...props} />
   );
 }

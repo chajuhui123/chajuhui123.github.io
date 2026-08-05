@@ -1,8 +1,14 @@
+"use client";
+
+import { cn } from "@/lib/cn";
+
 export function PageBackdrop() {
   return (
     <div
       aria-hidden
-      className="pointer-events-none fixed inset-0 -z-10 bg-[#fdfaf27d] dark:bg-[#241d0e]"
+      className={cn(
+        "pointer-events-none fixed inset-0 -z-10 transition-colors duration-300 bg-background",
+      )}
     />
   );
 }

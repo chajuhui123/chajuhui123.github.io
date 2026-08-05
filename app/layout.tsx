@@ -42,7 +42,7 @@ export default function RootLayout({
         <PageBackdrop />
         <Header />
         {/* header height: py-4 (16px*2) + logo 30px + space 80px = 112px */}
-        <main className="flex-1 pt-[142px]">{children}</main>
+        <main className="flex-1 pt-30">{children}</main>
         <Footer />
       </body>
     </html>

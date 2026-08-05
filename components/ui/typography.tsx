@@ -2,10 +2,10 @@ import { type ElementType, type ComponentPropsWithoutRef } from "react";
 import { cn } from "@/lib/cn";
 
 const headingStyles = {
-  1: "text-4xl font-bold tracking-tight",
-  2: "text-3xl font-semibold tracking-tight",
-  3: "text-2xl font-semibold",
-  4: "text-xl font-semibold",
+  1: "text-3xl font-bold tracking-tight",
+  2: "text-2xl font-semibold tracking-tight",
+  3: "text-xl font-semibold",
+  4: "text-lg font-semibold",
 } as const;
 
 type HeadingLevel = keyof typeof headingStyles;
@@ -18,18 +18,18 @@ export function Heading({ level = 1, className, ...props }: HeadingProps) {
   const Tag = `h${level}` as ElementType;
   return (
     <Tag
-      className={cn("text-foreground", headingStyles[level], className)}
+      className={cn("text-text", headingStyles[level], className)}
       {...props}
     />
   );
 }
 
 const textStyles = {
-  lead: "text-lg text-foreground",
-  body: "text-base text-foreground",
-  small: "text-sm text-foreground",
-  caption: "text-sm text-muted-foreground",
-  tiny: "text-xs text-muted-foreground",
+  lead: "text-base leading-[1.9] text-text",
+  body: "text-sm leading-[1.9] text-text",
+  small: "text-xs leading-[1.8] text-text",
+  caption: "text-xs leading-[1.6] text-gray-2",
+  tiny: "text-xxs leading-[1.6] text-gray-2",
 } as const;
 
 type TextVariant = keyof typeof textStyles;

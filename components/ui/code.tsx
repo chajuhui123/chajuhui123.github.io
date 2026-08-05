@@ -9,7 +9,7 @@ export function InlineCode({
   return (
     <code
       className={cn(
-        "rounded-md bg-muted px-1.5 py-0.5 font-mono text-[0.875em] text-foreground",
+        "rounded bg-code-bg px-1.5 py-0.5 font-mono text-[0.875em] text-code-text",
         className,
       )}
       {...props}
@@ -30,18 +30,18 @@ export async function CodeBlock({
 }: CodeBlockProps) {
   const html = await codeToHtml(code.trim(), {
     lang,
-    themes: { light: "github-light", dark: "github-dark" },
+    theme: "github-dark",
   });
 
   return (
     <div
       className={cn(
-        "overflow-hidden rounded-lg border border-border bg-muted",
+        "overflow-hidden rounded-md border border-gray-800 bg-black",
         className,
       )}
     >
-      <div className="flex items-center justify-between border-b border-border px-4 py-2">
-        <span className="font-mono text-xs text-muted-foreground">{lang}</span>
+      <div className="flex items-center justify-between border-b border-gray-800 px-4 py-2">
+        <span className="font-mono text-xs text-gray-400">{lang}</span>
       </div>
       <div
         className="shiki-wrapper overflow-x-auto py-4 text-sm leading-relaxed"
