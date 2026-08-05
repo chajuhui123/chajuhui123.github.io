@@ -1,0 +1,210 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens
+ * - Color: page backdrop (background) vs. content surface (surface) pair,
+ *   plus max-contrast text, two grays for borders and meta text only, and
+ *   a single orange-coral accent for chips/badges with dedicated text and
+ *   background sub-tones.
+ *   Light values: background #fffbfa (subtle coral tint), surface #ffffff,
+ *   gray-1 #ededed, gray-2 #a3a3a3, accent #ff6b47, accent-text #c2410c,
+ *   accent-bg #fff1ec.
+ *   Dark values: background #0d0d0d, surface #0d0d0d, gray-1 #262626,
+ *   gray-2 #a3a3a3, accent #e08a6b, accent-text #f2a488, accent-bg #2e1810.
+ * - Type scale: tuned for long-form Korean reading (looser line-height than
+ *   Tailwind's defaults). Semantic mapping for blog content:
+ *     h1 → text-4xl font-bold      h2 → text-3xl font-semibold
+ *     h3 → text-2xl font-semibold  h4 → text-xl font-semibold
+ *     lead paragraph → text-lg     body → text-base
+ *     caption/meta → text-sm text-gray-2
+ *     tiny/labels → text-xs
+ */
+
+:root {
+  /* 화면 전체 배경(PageBackdrop) — 아주 옅은 코랄 틴트 */
+  --background: #fffbfa;
+  /* 콘텐츠 영역(카드·본문 컨테이너·코드블록) — 순백 고정 */
+  --surface: #ffffff;
+  --text: #1a1a1a;
+
+  /* 보조 그레이 — 보더/구분선 등 최소한으로만 */
+  --gray-1: #ededed; /* 아주 옅은 구분선, 카드 보더 */
+  --gray-2: #a3a3a3; /* 캡션, 메타 정보 (날짜 등) */
+
+  /* 포인트 액센트 — 오렌지/코랄, 칩·밑줄·배지 전용 */
+  --accent: #ff6b47;
+  --accent-1: #ff6b4791;
+  --accent-2: #ff6c476d;
+
+  /* 텍스트/아이콘 전용 서브톤 — 명도 낮춘 버전 */
+  --accent-text: #c2410c;
+
+  /* 액센트 위에 얹는 배지용 옅은 배경 (선택) */
+  --accent-bg: #fff1ec;
+
+  /* 인라인 코드 배경/텍스트 — 배경은 채도 낮춘 톤, 텍스트는 액센트에 가깝게 */
+  --code-bg: #f5ece7;
+  --code-text: #c2410c;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --background: #0d0d0d;
+    --surface: #0d0d0d;
+    --text: #f2f2f2;
+
+    --gray-1: #262626;
+    --gray-2: #a3a3a3;
+
+    --accent: #e08a6b; /* 다크모드에서는 채도 낮춘 톤 사용 */
+    --accent-1: #e08a6b91;
+    --accent-2: #e08a6b6d;
+    --accent-text: #f2a488;
+
+    --accent-bg: #2e1810;
+
+    --code-bg: #332420;
+    --code-text: #f2a488;
+  }
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-surface: var(--surface);
+  --color-text: var(--text);
+
+  --color-gray-1: var(--gray-1);
+  --color-gray-2: var(--gray-2);
+
+  /*
+   * Fixed (non-theme-swapping) neutral gray scale for finer-grained needs
+   * (subtle backgrounds, hover states, one-off borders) than --gray-1/2
+   * cover. Zero-chroma, matching the project's achromatic tone — pair with
+   * dark: variants same as Tailwind's own numbered scales, e.g.
+   * bg-gray-100 dark:bg-gray-800.
+   */
+  --color-gray-10: #fcfcfc;
+  --color-gray-50: #fafafa;
+  --color-gray-100: #f5f5f5;
+  --color-gray-200: #e5e5e5;
+  --color-gray-300: #d4d4d4;
+  --color-gray-400: #a3a3a3;
+  --color-gray-500: #737373;
+  --color-gray-600: #525252;
+  --color-gray-700: #404040;
+  --color-gray-800: #262626;
+  --color-gray-900: #171717;
+  --color-gray-950: #0a0a0a;
+
+  --color-accent: var(--accent);
+  --color-accent-1: var(--accent-1);
+  --color-accent-2: var(--accent-2);
+  --color-accent-text: var(--accent-text);
+  --color-accent-bg: var(--accent-bg);
+
+  --color-code-bg: var(--code-bg);
+  --color-code-text: var(--code-text);
+
+  --font-sans: var(--font-pretendard);
+  --font-display: var(--font-space-grotesk);
+  --font-mono: var(--font-jetbrains-mono);
+
+  --text-xxs: 0.625rem;
+  --text-xxs--line-height: 0.875rem;
+  --text-xs: 0.75rem;
+  --text-xs--line-height: 1.125rem;
+  --text-sm: 0.875rem;
+  --text-sm--line-height: 1.5rem;
+  --text-base: 1rem;
+  --text-base--line-height: 1.75rem;
+  --text-lg: 1.125rem;
+  --text-lg--line-height: 1.875rem;
+  --text-xl: 1.25rem;
+  --text-xl--line-height: 2rem;
+  --text-2xl: 1.5rem;
+  --text-2xl--line-height: 2.25rem;
+  --text-3xl: 1.875rem;
+  --text-3xl--line-height: 2.5rem;
+  --text-4xl: 2.25rem;
+  --text-4xl--line-height: 2.875rem;
+  --text-5xl: 3rem;
+  --text-5xl--line-height: 3.5rem;
+}
+
+html {
+  background: var(--color-background);
+}
+
+body {
+  color: var(--color-text);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, sans-serif;
+}
+
+::selection {
+  background-color: var(--color-accent-1);
+}
+
+/* Footer copyright text: collapses to nothing, unfolds, holds, then folds away again. */
+@keyframes copyright-reveal {
+  0%,
+  8% {
+    max-width: 0;
+    opacity: 0.35;
+  }
+  35%,
+  65% {
+    max-width: 18rem;
+    opacity: 1;
+  }
+  92%,
+  100% {
+    max-width: 0;
+    opacity: 0.35;
+  }
+}
+
+.copyright-text {
+  display: inline-block;
+  max-width: 0;
+  animation: copyright-reveal 6s ease-in-out infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .copyright-text {
+    animation: none;
+    max-width: none;
+    opacity: 1;
+  }
+}
+
+/*
+ * Shiki code blocks: always render with the github-dark theme regardless of
+ * the page's light/dark mode (code blocks have a fixed black background),
+ * dropping Shiki's own background so our container bg-black shows through,
+ * and render an IDE-style line-number gutter via CSS counters.
+ */
+.shiki-wrapper .shiki,
+.shiki-wrapper .shiki span {
+  background-color: transparent !important;
+}
+
+.shiki-wrapper .shiki code {
+  counter-reset: line;
+  display: grid;
+}
+
+.shiki-wrapper .shiki code .line {
+  padding-inline: 1.25rem;
+}
+
+.shiki-wrapper .shiki code .line::before {
+  counter-increment: line;
+  content: counter(line);
+  display: inline-block;
+  width: 1.5rem;
+  margin-right: 1rem;
+  text-align: right;
+  color: var(--color-gray-400);
+  opacity: 0.6;
+  user-select: none;
+}

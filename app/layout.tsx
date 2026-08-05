@@ -1,0 +1,53 @@
+import type { Metadata } from "next";
+import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
+import localFont from "next/font/local";
+import { Header } from "@/components/layout/header";
+import { Footer } from "@/components/layout/footer";
+import { PageBackdrop } from "@/components/layout/page-backdrop";
+import "./globals.css";
+
+const spaceGrotesk = Space_Grotesk({
+  variable: "--font-space-grotesk",
+  subsets: ["latin"],
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  variable: "--font-jetbrains-mono",
+  subsets: ["latin"],
+});
+
+const pretendard = localFont({
+  src: "../node_modules/pretendard/dist/web/variable/woff2/PretendardVariable.woff2",
+  variable: "--font-pretendard",
+  weight: "45 920",
+  display: "swap",
+});
+
+export const metadata: Metadata = {
+  title: {
+    default: "Joy Devlog",
+    template: "%s ꕤ Joy Devlog",
+  },
+  description: "주희의 개발 기록",
+};
+
+export default function RootLayout({
+  children,
+}: Readonly<{
+  children: React.ReactNode;
+}>) {
+  return (
+    <html
+      lang="ko"
+      className={`${pretendard.variable} ${spaceGrotesk.variable} ${jetbrainsMono.variable} h-full antialiased`}
+    >
+      <body className="min-h-full flex flex-col">
+        <PageBackdrop />
+        <Header />
+        {/* header height: py-4 (16px*2) + logo 30px + space 80px = 112px */}
+        <main className="flex-1 pt-30">{children}</main>
+        <Footer />
+      </body>
+    </html>
+  );
+}
