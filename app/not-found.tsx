@@ -1,5 +1,10 @@
+import { type Metadata } from "next";
 import NextLink from "next/link";
 import { Heading, Text } from "@/components/ui/typography";
+
+export const metadata: Metadata = {
+  title: "Not Found",
+};
 
 export default function NotFound() {
   return (

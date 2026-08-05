@@ -1,5 +1,10 @@
+import { type Metadata } from "next";
 import { getAllStashes } from "@/lib/stash";
 import { StashList } from "./stash-list";
+
+export const metadata: Metadata = {
+  title: "Stash",
+};
 
 export default function Stash() {
   const stashes = getAllStashes();
