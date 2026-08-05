@@ -2,11 +2,13 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   transpilePackages: ["next-mdx-remote"],
+  // GitHub Pages only serves static files (no server for on-demand image
+  // optimization), so export a fully static build and skip next/image's
+  // optimization pipeline — this also sidesteps the PNG palette-compression
+  // banding issue, since images are now served unmodified.
+  output: "export",
   images: {
-    // Next's default quality (75) drives PNG output to palette/indexed-color
-    // quantization, which bands visibly on smooth gradients (e.g. frontmatter
-    // cover images) — allow a higher quality tier to avoid that.
-    qualities: [75, 85],
+    unoptimized: true,
   },
 };
 
