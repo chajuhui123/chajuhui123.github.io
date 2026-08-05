@@ -23,5 +23,13 @@ export function ListItem({
   className,
   ...props
 }: ComponentPropsWithoutRef<"li">) {
-  return <li className={cn("pl-1 leading-relaxed", className)} {...props} />;
+  return (
+    <li
+      className={cn(
+        "pl-1 leading-relaxed [&>ol]:mt-2 [&>ul]:mt-2",
+        className,
+      )}
+      {...props}
+    />
+  );
 }
