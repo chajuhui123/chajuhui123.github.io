@@ -47,6 +47,10 @@
   --code-text: #c2410c;
 }
 
+/*
+ * 다크모드 임시 비활성화: 시스템이 다크모드여도 라이트모드와 동일한 디자인을
+ * 보여주기 위해 아래 블록을 통째로 주석 처리함. 복원하려면 이 주석만 해제.
+ *
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0d0d0d;
@@ -56,7 +60,7 @@
     --gray-1: #262626;
     --gray-2: #a3a3a3;
 
-    --accent: #e08a6b; /* 다크모드에서는 채도 낮춘 톤 사용 */
+    --accent: #e08a6b;
     --accent-1: #e08a6b91;
     --accent-2: #e08a6b6d;
     --accent-text: #f2a488;
@@ -67,6 +71,7 @@
     --code-text: #f2a488;
   }
 }
+*/
 
 @theme inline {
   --color-background: var(--background);
