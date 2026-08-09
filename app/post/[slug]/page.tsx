@@ -6,6 +6,7 @@ import { Heading, Text } from "@/components/ui/typography";
 import { Image } from "@/components/ui/image";
 import { Chip } from "@/components/ui/chip";
 import { mdxComponents } from "@/components/mdx/mdx-components";
+import { Giscus } from "@/components/giscus";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -77,6 +78,9 @@ export default async function PostDetailPage({ params }: PageProps) {
           components={mdxComponents}
           options={{ mdxOptions: { remarkPlugins: [remarkGfm] } }}
         />
+        <div className=" mt-1">
+          <Giscus />
+        </div>
       </div>
     </article>
   );
