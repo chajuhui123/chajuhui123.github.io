@@ -28,6 +28,8 @@ function Pre({
 function MdxImage({
   className,
   alt,
+  height,
+  style,
   ...props
 }: ComponentPropsWithoutRef<"img">) {
   return (
@@ -36,7 +38,21 @@ function MdxImage({
     // eslint-disable-next-line @next/next/no-img-element
     <img
       alt={alt}
-      className={cn("w-full rounded-md border border-gray-1", className)}
+      className={cn(
+        "rounded-md border border-gray-1",
+        // The post body is a flex column, so opt out of the default stretch or
+        // the image is widened to full width while its height stays capped.
+        height === undefined ? "w-full" : "self-start",
+        className,
+      )}
+      // Tailwind preflight sets `img { height: auto; max-width: 100% }`, which
+      // ignores the height attribute. Treat height as a max-height instead of
+      // forcing it, so a wide image capped by max-width keeps its aspect ratio.
+      style={
+        height === undefined
+          ? style
+          : { ...style, maxHeight: Number(height) || height, width: "auto" }
+      }
       {...props}
     />
   );
@@ -83,6 +99,9 @@ export const mdxComponents = {
     <Divider className={cn("my-6", className)} {...props} />
   ),
   img: MdxImage,
+  // 높이 지정용: <Img src="..." alt="..." height="320" />
+  // (MDX 본문의 소문자 <img> 태그는 components 매핑을 타지 않아 대문자로 노출)
+  Img: MdxImage,
   code: InlineCode,
   pre: Pre,
   table: ({ className, ...props }: ComponentPropsWithoutRef<"table">) => (
